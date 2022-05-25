@@ -15,14 +15,12 @@ class Subject(ABC):
 
 class Observer(ABC):
     """..."""
-
     def update(self, temp: float, humidity: float, pressure: float):
         pass
 
 
 class DisplayElement(ABC):
     """..."""
-
     def display(self):
         pass
 
@@ -52,3 +50,19 @@ class WeatherData(Subject):
         self.humidity = humid
         self.presssure = press
         self.measurements_changed()
+
+
+class CurrentConditionsDisplay(Observer, DisplayElement):
+    def __init__(self, weather_data_object: WeatherData):
+        self.temperature = 0
+        self.humidity = 0
+        self.weather_data = weather_data_object
+        self.weather_data.register_observer(self)
+
+    def update(self, temp: float, humidity: float, pressure: float):
+        self.temperature = temp
+        self.humidity = humidity
+        self.display()
+
+    def display(self):
+        print(f"Current conditions: {self.temperature}°C and {self.humidity} %humidity")

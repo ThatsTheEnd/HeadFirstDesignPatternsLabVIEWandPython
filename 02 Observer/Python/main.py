@@ -15,6 +15,7 @@ class Observer(ABC):
 
 class DisplayElement(ABC):
     """..."""
+    @abstractmethod
     def display(self):
         pass
 

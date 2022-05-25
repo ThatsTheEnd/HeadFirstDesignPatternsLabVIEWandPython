@@ -66,3 +66,13 @@ class CurrentConditionsDisplay(Observer, DisplayElement):
 
     def display(self):
         print(f"Current conditions: {self.temperature}°C and {self.humidity} %humidity")
+
+
+if __name__ == '__main__':
+    my_weatherdata = WeatherData()
+    first_display = CurrentConditionsDisplay(my_weatherdata)
+    my_weatherdata.set_measurements(25, 80, 1008)
+    my_weatherdata.set_measurements(26, 85, 1010)
+    my_weatherdata.set_measurements(27, 87, 1020)
+
+

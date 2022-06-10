@@ -1,0 +1,1 @@
+https://forums.ni.com/t5/LabVIEW-Development-Best/Decorator-Wrapper-Pattern/ta-p/3528153

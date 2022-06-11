@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 
 
 class Beverage(ABC):
@@ -36,6 +36,7 @@ class Espresso(Beverage):
     """
     Extends also beverage class
     """
+
     def __init__(self):
         super().__init__()
         self.description = "Espresso"
@@ -48,6 +49,7 @@ class HouseBlend(Beverage):
     """
     Extends also beverage class
     """
+
     def __init__(self):
         super().__init__()
         self.description = "House blend coffee"
@@ -60,6 +62,7 @@ class Decaf(Beverage):
     """
     Extends also beverage class
     """
+
     def __init__(self):
         super().__init__()
         self.description = "Decaffinated Coffee"
@@ -72,6 +75,7 @@ class DarkRoast(Beverage):
     """
     Extends also beverage class
     """
+
     def __init__(self):
         super().__init__()
         self.description = "Dark Roast Coffee"
@@ -87,9 +91,10 @@ class Mocha(CondimentDecorator):
     """
     Mocha is a decorator, so it is a subclass of CondimentDecorator, but CondimentDecorator is a subclass of Beverage
     """
-    def __init__(self, my_beverage: Beverage):
+
+    def __init__(self, beverage: Beverage):
         super().__init__()
-        self.beverage_that_condiment_wraps = my_beverage
+        self.beverage_that_condiment_wraps = beverage
 
     def get_description(self) -> str:
         return self.beverage_that_condiment_wraps.get_description() + ", Mocha"
@@ -98,16 +103,69 @@ class Mocha(CondimentDecorator):
         return self.beverage_that_condiment_wraps.cost() + 0.20
 
 
-  class SteamedMilk(CondimentDecorator):
+class SteamedMilk(CondimentDecorator):
     """
-    SteamedMilk is a decorator, so it is a subclass of CondimentDecorator, but CondimentDecorator is a subclass of Beverage
+    SteamedMilk is a decorator, so it is a subclass of CondimentDecorator,
+    but CondimentDecorator is a subclass of Beverage
     """
-    def __init__(self, my_beverage: Beverage):
+
+    def __init__(self, beverage: Beverage):
         super().__init__()
-        self.beverage_that_condiment_wraps = my_beverage
+        self.beverage_that_condiment_wraps = beverage
 
     def get_description(self) -> str:
-        return self.beverage_that_condiment_wraps.get_description() + ", Mocha"
+        return self.beverage_that_condiment_wraps.get_description() + ", Steamed Milk"
 
     def cost(self) -> float:
-        return self.beverage_that_condiment_wraps.cost() + 0.20
+        return self.beverage_that_condiment_wraps.cost() + 0.10
+
+
+class Soy(CondimentDecorator):
+    """
+    SteamedMilk is a decorator, so it is a subclass of CondimentDecorator,
+    but CondimentDecorator is a subclass of Beverage
+    """
+
+    def __init__(self, beverage: Beverage):
+        super().__init__()
+        self.beverage_that_condiment_wraps = beverage
+
+    def get_description(self) -> str:
+        return self.beverage_that_condiment_wraps.get_description() + ", Soy Milk"
+
+    def cost(self) -> float:
+        return self.beverage_that_condiment_wraps.cost() + 0.15
+
+
+class Whip(CondimentDecorator):
+    """
+    SteamedMilk is a decorator, so it is a subclass of CondimentDecorator,
+    but CondimentDecorator is a subclass of Beverage
+    """
+
+    def __init__(self, beverage: Beverage):
+        super().__init__()
+        self.beverage_that_condiment_wraps = beverage
+
+    def get_description(self) -> str:
+        return self.beverage_that_condiment_wraps.get_description() + ", Whip"
+
+    def cost(self) -> float:
+        return self.beverage_that_condiment_wraps.cost() + 0.10
+
+
+if __name__ == '__main__':
+    my_beverage = Espresso()
+    print("Beverage 1:" + my_beverage.get_description() + " €" + str(my_beverage.cost()))
+
+    my_beverage2 = DarkRoast()
+    my_beverage2 = Mocha(my_beverage2)
+    my_beverage2 = Mocha(my_beverage2)
+    my_beverage2 = Whip(my_beverage2)
+    print("Beverage 2:" + my_beverage2.get_description() + " €" + str(my_beverage2.cost()))
+
+    my_beverage3 = HouseBlend()
+    my_beverage3 = Soy(my_beverage3)
+    my_beverage3 = Mocha(my_beverage3)
+    my_beverage3 = Whip(my_beverage3)
+    print("Beverage 3:" + my_beverage3.get_description() + " €" + str(my_beverage3.cost()))

@@ -190,9 +190,11 @@ class Whip(CondimentDecorator):
 
 if __name__ == '__main__':
     my_beverage = Espresso(Size.Tall)
-    print("Beverage 1:" + my_beverage.get_description() + " €" + str(my_beverage.cost()))
+    my_beverage = Mocha(my_beverage)
+    print("Beverage 1 Tall:" + my_beverage.get_description() + " €" + str(my_beverage.cost()))
     my_beverage = Espresso(Size.Venti)
-    print("Beverage 1:" + my_beverage.get_description() + " €" + str(my_beverage.cost()))
+    my_beverage = Mocha(my_beverage)
+    print("Beverage 1 Venti:" + my_beverage.get_description() + " €" + str(my_beverage.cost()))
 
     my_beverage2 = DarkRoast(Size.Venti)
     my_beverage2 = Mocha(my_beverage2)

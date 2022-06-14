@@ -1,4 +1,5 @@
-from pizzas import *  # I know consered bad design, but don't have the time to rework it here
+from abc import ABC, abstractmethod
+from pizzas import PizzaType, Pizza, NYStylePepperoniPizza, NYStyleCheesePizza
 
 
 class PizzaStore(ABC):
@@ -27,6 +28,7 @@ class NYPizzaStore(PizzaStore):
     """
     implements the abstract methods of the pizza store
     """
+
     def create_pizza(self, _type: PizzaType) -> Pizza:
         if _type == PizzaType.cheese:
             return NYStyleCheesePizza()

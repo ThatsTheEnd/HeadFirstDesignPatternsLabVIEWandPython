@@ -1,5 +1,5 @@
 from enum import Enum
-from abc import abstractmethod, ABC
+from abc import ABC
 
 
 class PizzaType(Enum):
@@ -45,6 +45,7 @@ class NYStyleCheesePizza(Pizza):
     """
     but with cheese
     """
+
     def __init__(self):
         super(NYStyleCheesePizza, self).__init__()
         self.name = "NY Style Sauce and Cheese Pizza"
@@ -57,6 +58,7 @@ class NYStylePepperoniPizza(Pizza):
     """
     but with cheese
     """
+
     def __init__(self):
         super(NYStylePepperoniPizza, self).__init__()
         self.name = "NY Style Pepperoni Pizza"
@@ -66,5 +68,3 @@ class NYStylePepperoniPizza(Pizza):
         self.toppings.append("Sliced Pepperoni")
         self.toppings.append("Garlic")
         self.toppings.append("Onion")
-
-
